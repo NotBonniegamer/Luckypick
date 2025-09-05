@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Name Spinner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #0f0;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #name {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    #winner {
+      font-size: 2em;
+      color: #ff0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="name">Bereit...</div>
+  <div id="winner"></div>
+
+  <script>
+    const names = ["Jonas", "Yannick"];
+    const nameBox = document.getElementById("name");
+    const winnerBox = document.getElementById("winner");
+
+    let count = 0;
+    const totalSpins = 1000;
+    const interval = 10; // milliseconds
+
+    const spinner = setInterval(() => {
+      const currentName = names[count % 2];
+      nameBox.textContent = currentName;
+      count++;
+
+      if (count >= totalSpins) {
+        clearInterval(spinner);
+        nameBox.textContent = "Yannick";
+        winnerBox.textContent = "🏆 Gewinner: Yannick!";
+      }
+    }, interval);
+  </script>
+</body>
+</html>
